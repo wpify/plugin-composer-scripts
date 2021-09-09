@@ -56,7 +56,6 @@ class Plugin implements PluginInterface, EventSubscriberInterface {
 					'/\deps\//',
 					'/\vendor\//',
 					'/\/node\_modules\//',
-					'/\/ComposerScripts\.php/',
 				)
 			);
 
