@@ -16,9 +16,6 @@ use Transliterator;
 class Plugin implements PluginInterface, EventSubscriberInterface {
 	public static function getSubscribedEvents() {
 		return array(
-			'post-root-package-install' => array(
-				array( 'post_root_package_install' )
-			),
 			'post-create-project-cmd'   => array(
 				array( 'post_create_project_cmd' )
 			),
@@ -37,7 +34,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface {
 		// TODO: Implement uninstall() method.
 	}
 
-	public function post_root_package_install( Event $event ) {
+	public function post_create_project_cmd( Event $event ) {
 		$slug = basename( getcwd() );
 
 		if ( ! empty( $slug ) ) {
@@ -64,6 +61,12 @@ class Plugin implements PluginInterface, EventSubscriberInterface {
 			);
 
 			rename( getcwd() . '/wpify-plugin-skeleton.php', getcwd() . '/' . $slug . '.php' );
+
+			echo shell_exec( 'composer update' );
+			echo shell_exec( 'npm install' );
+			echo shell_exec( 'npm run build' );
+			echo shell_exec( 'git init --initial-branch=master' );
+			echo shell_exec( 'git add .' );
 		}
 	}
 
@@ -182,13 +185,5 @@ class Plugin implements PluginInterface, EventSubscriberInterface {
 		) );
 
 		return implode( '_', array_map( 'strtolower', $parts ) );
-	}
-
-	public function post_create_project_cmd( Event $event ) {
-		echo shell_exec( 'composer update' );
-		echo shell_exec( 'npm install' );
-		echo shell_exec( 'npm run build' );
-		echo shell_exec( 'git init --initial-branch=master' );
-		echo shell_exec( 'git add .' );
 	}
 }
