@@ -18,36 +18,34 @@ class ReplaceNameCommand extends BaseCommand {
 	protected function execute( InputInterface $input, OutputInterface $output ) {
 		$slug = basename( getcwd() );
 
-		if ( ! empty( $slug ) ) {
-			$this->replace_in_files(
-				getcwd(),
-				'/.*\.(php|json|js|jsx|css|scss|md)$/',
-				array(
-					'/' . preg_quote( 'wpify-plugin-skeleton', '/' ) . '/' => $this->slug( $slug ),
-					'/' . preg_quote( 'WPIFY_PLUGIN_SKELETON', '/' ) . '/' => $this->underscored_uppercase( $slug ),
-					'/' . preg_quote( 'WPify Plugin Skeleton', '/' ) . '/' => $this->spaced_camelcase( $slug ),
-					'/' . preg_quote( 'Wpify Plugin Skeleton', '/' ) . '/' => $this->spaced_camelcase( $slug ),
-					'/' . preg_quote( 'WPifyPluginSkeleton', '/' ) . '/'   => $this->camelcase( $slug ),
-					'/' . preg_quote( 'WpifyPluginSkeleton', '/' ) . '/'   => $this->camelcase( $slug ),
-					'/' . preg_quote( 'WPify_Plugin_Skeleton', '/' ) . '/' => $this->underscored_camelcase( $slug ),
-					'/' . preg_quote( 'Wpify_Plugin_Skeleton', '/' ) . '/' => $this->underscored_camelcase( $slug ),
-					'/' . preg_quote( 'wpify_plugin_skeleton', '/' ) . '/' => $this->underscored_lowercase( $slug ),
-				),
-				array(
-					'/\deps\//',
-					'/\vendor\//',
-					'/\/node\_modules\//',
-				)
-			);
+		$this->replace_in_files(
+			getcwd(),
+			'/.*\.(php|json|js|jsx|css|scss|md)$/',
+			array(
+				'/' . preg_quote( 'wpify-plugin-skeleton', '/' ) . '/' => $this->slug( $slug ),
+				'/' . preg_quote( 'WPIFY_PLUGIN_SKELETON', '/' ) . '/' => $this->underscored_uppercase( $slug ),
+				'/' . preg_quote( 'WPify Plugin Skeleton', '/' ) . '/' => $this->spaced_camelcase( $slug ),
+				'/' . preg_quote( 'Wpify Plugin Skeleton', '/' ) . '/' => $this->spaced_camelcase( $slug ),
+				'/' . preg_quote( 'WPifyPluginSkeleton', '/' ) . '/'   => $this->camelcase( $slug ),
+				'/' . preg_quote( 'WpifyPluginSkeleton', '/' ) . '/'   => $this->camelcase( $slug ),
+				'/' . preg_quote( 'WPify_Plugin_Skeleton', '/' ) . '/' => $this->underscored_camelcase( $slug ),
+				'/' . preg_quote( 'Wpify_Plugin_Skeleton', '/' ) . '/' => $this->underscored_camelcase( $slug ),
+				'/' . preg_quote( 'wpify_plugin_skeleton', '/' ) . '/' => $this->underscored_lowercase( $slug ),
+			),
+			array(
+				'/\deps\//',
+				'/\vendor\//',
+				'/\/node\_modules\//',
+			)
+		);
 
-			rename( getcwd() . '/wpify-plugin-skeleton.php', getcwd() . '/' . $slug . '.php' );
+		rename( getcwd() . '/wpify-plugin-skeleton.php', getcwd() . '/' . $slug . '.php' );
 
-			echo shell_exec( 'composer update' );
-			echo shell_exec( 'npm install' );
-			echo shell_exec( 'npm run build' );
-			echo shell_exec( 'git init --initial-branch=master' );
-			echo shell_exec( 'git add .' );
-		}
+		echo shell_exec( 'composer update' );
+		echo shell_exec( 'npm install' );
+		echo shell_exec( 'npm run build' );
+		echo shell_exec( 'git init --initial-branch=master' );
+		echo shell_exec( 'git add .' );
 	}
 
 	/**
