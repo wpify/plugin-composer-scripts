@@ -3,6 +3,7 @@
 namespace Wpify\PluginComposerScripts;
 
 use Composer\Composer;
+use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
@@ -12,7 +13,7 @@ use RecursiveRegexIterator;
 use RegexIterator;
 use Transliterator;
 
-class Plugin implements PluginInterface {
+class Plugin implements PluginInterface, EventSubscriberInterface {
 	public static function getSubscribedEvents() {
 		return array(
 			'post-root-package-install' => array(
