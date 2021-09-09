@@ -1,0 +1,26 @@
+{
+  "name": "wpify/plugin-composer-scripts",
+  "description": "Composer plugin with scripts for WPify Plugins",
+  "type": "composer-plugin",
+  "require": {
+	"composer-plugin-api": "^2.1"
+  },
+  "require-dev": {
+	"composer/composer": "^2.1"
+  },
+  "license": "GPL-2.0-or-later",
+  "autoload": {
+	"psr-4": {
+	  "Wpify\\PluginComposerScripts\\": "src/"
+	}
+  },
+  "authors": [
+	{
+	  "name": "WPify",
+	  "email": "info@wpify.io"
+	}
+  ],
+  "extra": {
+	"class": "Wpify\\PluginComposerScripts\\Plugin"
+  }
+}
