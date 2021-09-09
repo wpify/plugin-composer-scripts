@@ -13,7 +13,6 @@ use Transliterator;
 
 class ReplaceNameCommand extends BaseCommand {
 	protected function configure() {
-		$this->setName( 'replace-name' );
 	}
 
 	protected function execute( InputInterface $input, OutputInterface $output ) {

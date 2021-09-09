@@ -25,6 +25,6 @@ class Plugin implements PluginInterface, Capable, CommandProvider {
 	}
 
 	public function getCommands() {
-		return array( new ReplaceNameCommand );
+		return array( new ReplaceNameCommand( 'replace-name' ) );
 	}
 }
