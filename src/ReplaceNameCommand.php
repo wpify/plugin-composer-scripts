@@ -25,8 +25,8 @@ class ReplaceNameCommand extends BaseCommand {
 				array(
 					'/' . preg_quote( 'wpify-plugin-skeleton', '/' ) . '/' => $this->slug( $slug ),
 					'/' . preg_quote( 'WPIFY_PLUGIN_SKELETON', '/' ) . '/' => $this->underscored_uppercase( $slug ),
-					'/' . preg_quote( 'WPify Plugin', '/' ) . '/'          => $this->spaced_camelcase( $slug ),
-					'/' . preg_quote( 'Wpify Plugin', '/' ) . '/'          => $this->spaced_camelcase( $slug ),
+					'/' . preg_quote( 'WPify Plugin Skeleton', '/' ) . '/' => $this->spaced_camelcase( $slug ),
+					'/' . preg_quote( 'Wpify Plugin Skeleton', '/' ) . '/' => $this->spaced_camelcase( $slug ),
 					'/' . preg_quote( 'WPifyPluginSkeleton', '/' ) . '/'   => $this->camelcase( $slug ),
 					'/' . preg_quote( 'WpifyPluginSkeleton', '/' ) . '/'   => $this->camelcase( $slug ),
 					'/' . preg_quote( 'WPify_Plugin_Skeleton', '/' ) . '/' => $this->underscored_camelcase( $slug ),
