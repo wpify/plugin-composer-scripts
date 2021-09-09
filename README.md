@@ -2,6 +2,6 @@
 
 Composer package with script for wpify/plugin-skeleton based projects. Includes following scripts:
 
-* **replace-name** Replace references for "wpify-plugin-skeleton" with real plugin name during the project creation, so the developer has everything ready at the beginning. Usage: `$ composer replace-name`
+* **replace-name** Replace references for `wpify-plugin-skeleton` and variants with real plugin name during the project creation, so the developer has everything ready at the beginning. Usage: `$ composer replace-name`
 
 More to come...
