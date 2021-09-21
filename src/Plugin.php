@@ -31,6 +31,6 @@ class Plugin implements PluginInterface, Capable, CommandProvider {
 	}
 
 	public function getCommands() {
-		return array( new ReplaceNameCommand( 'replace-name' ) );
+		return array( new RenameWpifyPlugin( 'rename-wpify-plugin' ) );
 	}
 }
