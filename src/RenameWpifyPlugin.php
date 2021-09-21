@@ -130,7 +130,6 @@ class RenameWpifyPlugin extends BaseCommand {
 		array $excludes = array()
 	) {
 		$paths   = $this->find_paths( $folder, $regex, $excludes );
-		$renames = array();
 
 		foreach ( $paths as $path ) {
 			$content = file_get_contents( $path );
@@ -151,19 +150,15 @@ class RenameWpifyPlugin extends BaseCommand {
 			$new_path = $folder . $file;
 
 			if ( $new_path !== $path && file_exists( $path ) ) {
-				$renames[ $path ] = $new_path;
-			}
-		}
-
-		foreach ( $renames as $old => $new ) {
-			if ( file_exists( $old ) ) {
-				if ( ! file_exists( dirname( $new ) ) ) {
-					mkdir( dirname( $new ), fileperms( dirname( $old ) ), true );
+				if ( ! file_exists( dirname( $new_path ) ) ) {
+					mkdir( dirname( $new_path ), fileperms( dirname( $path ) ), true );
 				}
 
-				rename( $old, $new );
+				rename( $path, $new_path );
 			}
 		}
+
+		$this->remove_empty_directories( $folder );
 	}
 
 	private function find_paths( string $folder, string $regex, array $excludes ) {
@@ -188,5 +183,15 @@ class RenameWpifyPlugin extends BaseCommand {
 		}
 
 		return $file_list;
+	}
+
+	private function remove_empty_directories( $path ) {
+		$empty = true;
+
+		foreach ( glob( $path . DIRECTORY_SEPARATOR . "*" ) as $file ) {
+			$empty &= is_dir( $file ) && $this->remove_empty_directories( $file );
+		}
+
+		return $empty && rmdir( $path );
 	}
 }
