@@ -157,6 +157,10 @@ class RenameWpifyPlugin extends BaseCommand {
 
 		foreach ( $renames as $old => $new ) {
 			if ( file_exists( $old ) ) {
+				if ( ! file_exists( dirname( $new ) ) ) {
+					mkdir( dirname( $new ), fileperms( dirname( $old ) ), true );
+				}
+
 				rename( $old, $new );
 			}
 		}
