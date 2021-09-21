@@ -149,7 +149,7 @@ class RenameWpifyPlugin extends BaseCommand {
 
 			$new_path = $folder . $file;
 
-			if ( $new_path !== $path ) {
+			if ( $new_path !== $path && file_exists( $path ) ) {
 				rename( $path, $new_path );
 			}
 		}
