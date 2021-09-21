@@ -43,10 +43,6 @@ class RenameWpifyPlugin extends BaseCommand {
 				'/\/node\_modules\//',
 			)
 		);
-
-		echo shell_exec( 'composer update' );
-		echo shell_exec( 'npm install' );
-		echo shell_exec( 'npm run build' );
 	}
 
 	private function slug( string $str ) {
