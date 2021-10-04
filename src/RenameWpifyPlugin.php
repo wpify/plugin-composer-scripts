@@ -35,7 +35,7 @@ class RenameWpifyPlugin extends BaseCommand {
 
 		$this->replace_in_files(
 			getcwd(),
-			'/.*\.(php|json|js|jsx|css|scss|md|txt)$/',
+			'/.*/',
 			$search_replace,
 			array(
 				'/\/deps\//',
