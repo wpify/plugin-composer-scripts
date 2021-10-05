@@ -175,7 +175,9 @@ class RenameWpifyPlugin extends BaseCommand {
 				}
 			}
 
-			$file_list[] = $file;
+			if ( is_file( $file ) ) {
+				$file_list[] = $file;
+			}
 		}
 
 		return $file_list;
