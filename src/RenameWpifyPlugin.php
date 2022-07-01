@@ -43,7 +43,7 @@ class RenameWpifyPlugin extends BaseCommand {
 				'/\/node\_modules\//',
 			)
 		);
-		return 1;
+		return 0;
 	}
 
 	private function slug( string $str ) {
